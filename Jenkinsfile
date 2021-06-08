@@ -91,6 +91,7 @@ spec:
          
         container('ansible-molecule') {
         sh """
+           sleep 20
            molecule init role -d docker ansible-apache
            mv main.yml /ansible-apache/tasks/main.yml
            mkdir  /ansible-apache/molecule/default/tests/
