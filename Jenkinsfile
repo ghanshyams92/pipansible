@@ -100,7 +100,7 @@ spec:
            mv test_default.py ansible-apache/molecule/default/tests/test_default.py
            mv molecule.yml ansible-apache/molecule/default/molecule.yml
            mv index.html.j2 ansible-apache/templates/index.html.j2
-           mv vars_main ansible-apache/vars/main.yml
+           mv vars_main.yml ansible-apache/vars/main.yml
            cd ansible-apache/
            molecule test --all
            """
