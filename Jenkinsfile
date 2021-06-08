@@ -93,5 +93,12 @@ spec:
       }
     }
    }
+    stage ('Security Smell') {
+      steps {
+        container('ansible-molecule') {
+        sh 'echo "EXPLORING Security smell"'
+        }
+      }
+    }        
   } // close stages
 }   // close pipeline
