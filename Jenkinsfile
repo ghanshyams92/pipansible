@@ -89,6 +89,7 @@ spec:
       steps {
         container('ansible-molecule') {
         sh 'cd ansible-apache'
+        sh 'sleep 15'
         sh 'molecule test --all'
       }
     }
