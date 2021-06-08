@@ -88,6 +88,7 @@ spec:
     stage ('Molecule test') {
       steps {
         container('ansible-molecule') {
+        sh 'cd ansible-apache'
         sh 'sudo molecule test --all'
       }
     }
