@@ -91,14 +91,16 @@ spec:
          
         container('ansible-molecule') {
         sh """
-           sleep 20
+           sleep 2
+           pwd
+           whoami
            molecule init role -d docker ansible-apache
-           mv main.yml /ansible-apache/tasks/main.yml
-           mkdir  /ansible-apache/molecule/default/tests/
-           mv test_default.py /ansible-apache/molecule/default/tests/test_default.py
-           mv molecule.yml /ansible-apache/molecule/default/molecule.yml
-           mv templates/index.html.j2 /ansible-apache/templates/index.html.j2
-           mv vars_main /ansible-apache/vars/main.yml
+           mv main.yml ansible-apache/tasks/main.yml
+           mkdir  ansible-apache/molecule/default/tests/
+           mv test_default.py ansible-apache/molecule/default/tests/test_default.py
+           mv molecule.yml ansible-apache/molecule/default/molecule.yml
+           mv templates/index.html.j2 ansible-apache/templates/index.html.j2
+           mv vars_main ansible-apache/vars/main.yml
            cd ansible-apache/
            molecule test --all
            """
