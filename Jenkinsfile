@@ -99,7 +99,7 @@ spec:
            mkdir  ansible-apache/molecule/default/tests/
            mv test_default.py ansible-apache/molecule/default/tests/test_default.py
            mv molecule.yml ansible-apache/molecule/default/molecule.yml
-           mv templates/index.html.j2 ansible-apache/templates/index.html.j2
+           mv index.html.j2 ansible-apache/templates/index.html.j2
            mv vars_main ansible-apache/vars/main.yml
            cd ansible-apache/
            molecule test --all
