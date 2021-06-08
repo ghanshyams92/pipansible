@@ -88,9 +88,15 @@ spec:
     stage ('Molecule test') {
       steps {
         container('ansible-molecule') {
-        sh 'cd ansible-apache'
-        sh 'sleep 15'
-        sh 'molecule test --all'
+        sh """
+           molecule init role -d docker ansible-apache
+           mv main.yml /ansible-apache/tasks/main.yml
+           mkdir  /ansible-apache/molecule/default/tests/
+           mv test_default.py /ansible-apache/molecule/default/tests/test_default.py
+           mv molecule.yml /ansible-apache/molecule/default/molecule.yml
+           cd ansible-apache/
+           molecule test --all
+           """
       }
     }
    }
