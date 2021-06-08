@@ -88,8 +88,6 @@ spec:
 
     stage ('Molecule test') {
       steps {
-        checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/ghanshyams92/pipansible.git']]])
-         
         container('ansible-molecule') {
         sh """
            molecule init role -d docker $ROLE_NAME
