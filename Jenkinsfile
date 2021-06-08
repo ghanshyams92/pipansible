@@ -69,9 +69,10 @@ spec:
 """
         }
     }
-
+    environment {
+      ROLE_NAME="ansible-apache"
+    }
  stages {
-
     stage ('Display versions') {
       steps {
         container('ansible-molecule') {
@@ -91,17 +92,14 @@ spec:
          
         container('ansible-molecule') {
         sh """
-           sleep 2
-           pwd
-           whoami
-           molecule init role -d docker ansible-apache
-           mv main.yml ansible-apache/tasks/main.yml
-           mkdir  ansible-apache/molecule/default/tests/
-           mv test_default.py ansible-apache/molecule/default/tests/test_default.py
-           mv molecule.yml ansible-apache/molecule/default/molecule.yml
-           mv index.html.j2 ansible-apache/templates/index.html.j2
-           mv vars_main.yml ansible-apache/vars/main.yml
-           cd ansible-apache/
+           molecule init role -d docker $ROLE_NAME
+           mv main.yml $ROLE_NAME/tasks/main.yml
+           mkdir  $ROLE_NAME/molecule/default/tests/
+           mv test_default.py $ROLE_NAME/molecule/default/tests/test_default.py
+           mv molecule.yml $ROLE_NAME/molecule/default/molecule.yml
+           mv index.html.j2 $ROLE_NAME/templates/index.html.j2
+           mv vars_main.yml $ROLE_NAME/vars/main.yml
+           cd $ROLE_NAME/
            molecule test --all
            """
       }
