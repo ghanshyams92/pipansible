@@ -1,7 +1,7 @@
 ---
 - name: "Ensure required packages are present"
   yum:
-    name: "{{ pkg_list }}"
+    name: apache2
     state: present
 
 - name: "Ensure latest index.html is present"
@@ -11,7 +11,7 @@
 
 - name: "Ensure httpd service is started and enabled"
   service:
-    name: "{{ item }}"
+    name: ansi-service
     state: started
     enabled: true
   with_items: "{{ svc_list }}"
