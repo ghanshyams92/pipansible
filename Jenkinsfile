@@ -109,6 +109,13 @@ spec:
         sh 'echo "EXPLORING Security smell"'
         }
       }
-    }        
+    }  
+    stage ('Configure Target Resource') {
+      steps {
+        container('ansible-molecule') {
+        sh 'ansible-playbook testplay.yaml'
+        }
+      }
+    }       
   } // close stages
 }   // close pipeline
