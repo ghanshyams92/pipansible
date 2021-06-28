@@ -70,7 +70,7 @@ spec:
         }
     }
     environment {
-      ROLE_NAME="ansible-apache"
+      ROLE_NAME="ansibleapache"
     }
  stages {
     stage ('Display versions') {
