@@ -99,8 +99,8 @@ spec:
            mv vars_main.yml $ROLE_NAME/vars/main.yml
            cd $ROLE_NAME/
            rm -rf meta/main.yml
-           #molecule test --all
            ansible-lint .
+           #molecule test --all
            """
       }
     }
