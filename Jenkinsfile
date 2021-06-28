@@ -121,6 +121,7 @@ spec:
            cd /
            cd $ROLE_NAME
            sonar-scanner
+           """
         }
       }
     }  
