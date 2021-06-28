@@ -98,7 +98,7 @@ spec:
            mv index.html.j2 $ROLE_NAME/templates/index.html.j2
            mv vars_main.yml $ROLE_NAME/vars/main.yml
            cd $ROLE_NAME/
-           molecule converge
+           molecule verify
            """
       }
     }
