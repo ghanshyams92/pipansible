@@ -105,10 +105,22 @@ spec:
       }
     }
    }
-    stage ('Security Smell') {
+    stage ('SonarQube') {
       steps {
         container('ansible-molecule') {
-        sh 'echo "EXPLORING Security smell"'
+        sh """
+           apt-get update
+           apt-get install wget -y
+           apt-get install unzip -y
+           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+           unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+           mkdir /opt/sonar
+           mv sonar-scanner-4.6.2.2472-linux /opt/sonar/
+           export PATH=$PATH:/opt/sonar/sonar-scanner-4.6.2.2472-linux/bin
+           mv sonarconf /opt/sonar/sonar-scanner-4.6.2.2472-linux/conf/sonar-scanner.properties
+           cd /
+           cd $ROLE_NAME
+           sonar-scanner
         }
       }
     }  
