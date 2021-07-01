@@ -132,7 +132,8 @@ spec:
     stage ('Configure/Deploy Resource') {
       steps {
         container('ansible-molecule') {
-        sh 'ansible-playbook testplay.yaml'
+        sh 'terraform init'
+        sh 'terraform plan'
         }
       }
     }       
