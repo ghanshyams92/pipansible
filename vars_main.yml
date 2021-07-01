@@ -1,7 +1,7 @@
 ---
 pkg_list:
-  - httpd
-  - firewalld
+  - dialog
+ # - firewalld
 svc_list:
-  - httpd
-  - firewalld
+ # - httpd
+ # - firewalld
