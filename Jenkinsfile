@@ -93,7 +93,7 @@ spec:
         sh """
            molecule init role -d azure $ROLE_NAME
            mv examples/molecule/rhel8/create.yml $ROLE_NAME/molecule/default/create.yml
-           mv examples/molecule/rhel8/molecule.yml $ROLE_NAME/molecule/default/molecule.yml destroy.yml
+           mv examples/molecule/rhel8/molecule.yml $ROLE_NAME/molecule/default/molecule.yml
            mv examples/molecule/rhel8/destroy.yml $ROLE_NAME/molecule/default/destroy.yml
            mv examples/molecule/rhel8/prepare.yml $ROLE_NAME/molecule/default/prepare.yml
            cd $ROLE_NAME/
