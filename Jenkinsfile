@@ -91,7 +91,6 @@ spec:
       steps {
         container('ansible-molecule') {
         sh """
-           molecule init role -d docker $ROLE_NAME
            molecule init role -d azure $ROLE_NAME
            mv examples/molecule/rhel8/create.yml $ROLE_NAME/molecule/default/create.yml
            mv examples/molecule/rhel8/molecule.yml $ROLE_NAME/molecule/default/molecule.yml destroy.yml
@@ -132,8 +131,7 @@ spec:
     stage ('Configure/Deploy Resource') {
       steps {
         container('ansible-molecule') {
-        sh 'terraform init'
-        sh 'terraform plan'
+        sh 'ansible-playbook testplay.yaml'
         }
       }
     }       
