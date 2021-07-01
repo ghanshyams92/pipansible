@@ -116,7 +116,7 @@ spec:
            mv sonar-scanner-4.6.2.2472-linux /opt/sonar/
            export PATH=$PATH:/opt/sonar/sonar-scanner-4.6.2.2472-linux/bin
            mv sonarconf /opt/sonar/sonar-scanner-4.6.2.2472-linux/conf/sonar-scanner.properties
-           cd $ROLE_NAME
+           cd $ROLE_NAME/molecule/default/
            sonar-scanner
            """
         }
