@@ -73,7 +73,7 @@ spec:
       ROLE_NAME="ansibleapache"
     }
  stages {
-    stage ('Display versions') {
+    stage ('Unit Test') {
       steps {
         container('ansible-molecule') {
         sh '''
@@ -81,12 +81,13 @@ spec:
           python -V
           ansible --version
           molecule --version
+          ansible-lint .
         '''
       }
     }
   }
 
-    stage ('Molecule test') {
+    stage ('Integration test (Molecule (preview))') {
       steps {
         container('ansible-molecule') {
         sh """
@@ -99,13 +100,12 @@ spec:
            mv vars_main.yml $ROLE_NAME/vars/main.yml
            cd $ROLE_NAME/
            rm -rf meta/main.yml
-           ansible-lint .
            #molecule test --all
            """
       }
     }
    }
-    stage ('SonarQube') {
+    stage ('SonarQube Scan') {
       steps {
         container('ansible-molecule') {
         sh """
@@ -124,7 +124,14 @@ spec:
         }
       }
     }  
-    stage ('Configure Target Resource') {
+      stage('Approval: Confirm/Abort') {
+        steps {
+          script {
+            def userInput = input(id: 'confirm', message: 'Apply Ansible?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply Ansible', name: 'confirm'] ])
+          }
+        }
+      }
+    stage ('Configure/Deploy Resource') {
       steps {
         container('ansible-molecule') {
         sh 'ansible-playbook testplay.yaml'
