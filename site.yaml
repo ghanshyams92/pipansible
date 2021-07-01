@@ -1,0 +1,5 @@
+- hosts: localhost
+  vars_files:
+    - variables.yaml
+  roles:
+    - ansibleapache
