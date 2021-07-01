@@ -46,6 +46,14 @@ spec:
     securityContext: # https://github.com/GoogleContainerTools/kaniko/issues/681
       runAsUser: 0
       runAsGroup: 0
+  - name: ansible-centos
+    image: ansible/centos7-ansible:1.8
+    command:
+    - cat
+    tty: true
+    securityContext: # https://github.com/GoogleContainerTools/kaniko/issues/681
+      runAsUser: 0
+      runAsGroup: 0
   - name: terraform-cli
     image: gsaini05/terraform-az-go:0.15
     command:
@@ -133,8 +141,11 @@ spec:
       }
     stage ('Configure/Deploy Resource') {
       steps {
-        container('ansible-molecule') {
-        sh 'ansible-playbook testplay.yaml'
+        container('ansible-centos') {
+        sh """
+           echo " " > /etc/ansible/hosts
+           ansible-playbook site.yaml
+           """
         }
       }
     }       
